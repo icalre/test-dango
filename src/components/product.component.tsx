@@ -44,8 +44,10 @@ export default class ProductComponent extends Component<{ product: any, size:str
                             className="h-16 mx-auto"
                         />
                     </div>
-                    {!product.edit && <div className={`text-${size} font-bold text-black text-center cursor-pointer`} onClick={()=>handleEditProduct(product)}>{product.title}</div>}
-                    {product.edit && <div className={`text-${size} font-bold text-black text-center`}>
+                    {!product.edit && <div className="font-bold text-black text-center cursor-pointer" onClick={()=>handleEditProduct(product)}>
+                        <span className={size}>{product.title}</span>
+                    </div>}
+                    {product.edit && <div className={`text-sm font-bold text-black text-center`}>
                         <input className="shadow-sm border focus:outline-none w-12 text-center p-1 w-full" type="text" value={product.title} onChange={(event)=>handleTitleProduct(product, event.target.value)}/>
                         <button className="bg-indigo-500 p-2 rounded-md text-white m-1" onClick={()=>handleEditProduct(product)}>
                             Save

@@ -5,19 +5,13 @@ import productsList from "@/products.json";
 
 export default function ProductsComponent() {
     const [products, setProducts] = React.useState([...productsList]);
-    const [size, setSize] = React.useState('xl');
+    const [size, setSize] = React.useState('text-xl');
     const [sizeNumber, setSizeNumber] = React.useState(1);
     const [totalPrice, setTotalPrice] = React.useState(0);
     const [totalProducts, setTotalProducts] = React.useState(0);
 
     const handleSetSize = (value: string) => {
       setSizeNumber(Number(value));
-      if(Number(value)>1)
-      {
-          setSize(value+'xl')
-      }else{
-          setSize('xl')
-      }
     }
 
     const handleSetProducts = (product: any, index:number) => {
@@ -38,6 +32,15 @@ export default function ProductsComponent() {
         setTotalProducts(newTotalProducts);
         setTotalPrice(newTotalPrice);
     },[products])
+
+    useEffect(()=>{
+        if(sizeNumber>1)
+        {
+            setSize('text-'+sizeNumber+'xl')
+        }else{
+            setSize('text-xl')
+        }
+    },[sizeNumber])
 
     return (
         <main className="flex flex-col min-h-screen sm:p-4 md:p-10 lg:p-24">
